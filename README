@@ -1,0 +1,19 @@
+$Id: README 2638 2009-06-02 09:53:10Z dantld $
+
+    C++ HTC library version 0.8
+
+Before build make the link on suitable for your platform
+and compiler include file with name Makefile.include
+
+Run gmake with defined SINGLETHREAD=1 for building 
+non-multithread library.
+Run gmake with defined RELEASE=1 for building without
+debug information
+
+Add interface Queue2. Queue2 introduce new method:
+popList() which can be used for subscriber of heavy
+loaded application with many queue pushers. Using
+popList(0 get the bulk messages from queue at once
+instead only one message as pop() method can get.
+
+

@@ -1,0 +1,24 @@
+## C++ High Tool Cat Kit Classes library
+## $Id: Makefile.gcc 237 2013-05-14 04:01:16Z dantld $
+##
+
+CXX=gcc
+LNK=gcc
+CHTC_INC_PATH=..
+SHVER=-Wl,-soname,
+SHARED=-shared
+CXXFLAGS=-fPIC -I$(CHTC_INC_PATH) -D_RWSTD_MULTI_THREAD -D_POSIX_C_SOURCE=199506L -D_REENTRANT -ggdb3
+LDFLAGS=-L/usr/lib -lstdc++ -ldl -lrt
+
+OBJECTS=$(patsubst %.cpp,%.o,$(wildcard *.cpp))
+HEADERS=$(wildcard *.h)
+DEPENDS=$(patsubst %.cpp,%.d,$(wildcard *.cpp))
+
+-include $(DEPENDS)
+
+%.d : %.cpp
+	@echo '>>>' Make depends for source $<
+	@set -e; rm -f $@; \
+	$(CXX) $(CXXFLAGS) -E -M $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$

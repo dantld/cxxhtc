@@ -1,0 +1,7 @@
+set heap-check leaks on
+set heap-check free on
+set heap-check bounds on
+set heap-check scramble on
+abort_on_nomem=0
+abort_on_bounds=0
+abort_on_bad_free=0

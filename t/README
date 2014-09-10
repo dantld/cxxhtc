@@ -1,0 +1,31 @@
+$Id$
+
+    The unit tests for C++HTC library.
+
+COVERAGE:
+    ConfigHelperTest
+    PasswordFileTest
+    ScheduleUtilTest
+    StringUtilTest
+    ExceptionsTest
+    ReadWriteSyncTest
+    SmartPointersTest
+    TaskContextTest
+
+LEAKS:
+
+The next memory leaks are expected:
+
+-------------------------------------------------------------------------
+16400 bytes leaked at 0x600000000128d860 (49.12% of all bytes leaked)
+#0  operator new(unsigned long)() at ../new.C:27
+#1  SmartPointersTest::test_SmartPtr()() at SmartPointersTest.cpp:228
+#2  CppUnit::TestCaller<SmartPointersTest>::runTest()() at /usr/local/include/cppunit/TestCaller.h:166
+#3  CppUnit::TestCaseDecorator::runTest()() at TestCaseDecorator.cpp:43
+
+-------------------------------------------------------------------------
+1 bytes leaked at 0x60000000000105a0 (0.00% of all bytes leaked)
+#0  operator new(unsigned long)() at ../new.C:27
+#1  SmartPointersTest::test_AutoPtr()() at SmartPointersTest.cpp:226
+#2  CppUnit::TestCaller<SmartPointersTest>::runTest()() at /usr/local/include/cppunit/TestCaller.h:166
+#3  CppUnit::TestCaseDecorator::runTest()() at TestCaseDecorator.cpp:43

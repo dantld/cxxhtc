@@ -1,0 +1,13 @@
+##
+## Please always set this variable to right value
+## when you start a new branch of project!
+##
+CXXLIB_VERSION=0.8
+CXXLIB_NAME=c++htc
+CXXLIB_SHARED_LIB_NAME=lib$(CXXLIB_NAME).so
+CXXLIB_SHVER_NAME=lib$(CXXLIB_NAME).$(CXXLIB_VERSION).so
+CXXLIB_SONAME=lib$(CXXLIB_NAME).$(CXXLIB_VERSION).so
+ifeq ($(PLATFORM),AIX)
+CXXLIB_SONAME=
+endif
+

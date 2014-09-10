@@ -1,0 +1,41 @@
+## C++ High Tool Cat Kit Classes library
+## $Id: Makefile.aCC 157 2010-03-09 06:10:11Z dantld $
+##
+
+CXX=aCC   
+LNK=aCC
+CHTC_INC_PATH=..
+CXXFLAGS=-AA +DO11.31 +DSnative +DD64 -I$(CHTC_INC_PATH) -DHPUX
+CXXFLAGS_SHARED=+z
+SHVER=-Wl,+h,
+SHARED=-b
+LDFLAGS=+DD64 -L/usr/lib/hpux64
+
+ifndef SINGLETHREAD
+CXXFLAGS:=$(CXXFLAGS) -mt
+endif
+
+ifndef RELEASE
+CXXFLAGS:=$(CXXFLAGS) -g
+endif
+
+
+OBJECTS=$(patsubst %.cpp,%.o,$(wildcard *.cpp))
+HEADERS=$(wildcard *.h)
+ifneq ($(MAKECMDGOALS),clean)
+DEPENDS=$(patsubst %.cpp,%.d,$(wildcard *.cpp))
+endif
+
+ifeq ($(.DEFAULT_GOAL),)
+INCDEP=yes
+.DEFAULT_GOAL:=all
+endif
+
+-include $(DEPENDS)
+
+%.d : %.cpp
+	@echo '>>>' Make depends for source $<
+	@set -e; rm -f $@; \
+	$(CXX) $(CXXFLAGS) -E +Make $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$

@@ -1,0 +1,36 @@
+$Id: TODO 156 2010-03-01 06:17:15Z dantld $
+
+2010-02-24
+SmartPtr:
+    required public dtor of iface - we need to disable such feature.
+    Instead of this we need use the public dtor from base Obj class.
+    Some weakness in a locking when we decrement object reference
+    counter. Troubles can be in a SmartPtr dtor when reference 
+    counter already decremented and lock has free state (!) in this
+    time we destroy object if reference counter equal zero.
+
+TaskFactory:
+    The createTask() now has non-const parameter for Config*
+    need to be a const.
+
+TaskContext:
+    Is very pure need more methods for supporting any common types
+    like int,string etc.
+    DONE: partitially see revision 152
+
+ThreadPool:
+    Lack of retrieving information methods:
+	- is task with name ran
+	- how many tasks in a pool
+	- how many task with name ran
+	- common statistic (maybe)
+	- possibility of run task only in one instance
+	  (like singleton object pattern)
+
+need class TaskGroup:
+    Inherited from ATask (or TaskAdapter?). Run the group of task.
+    Take care about all task runned instances: wait for completeness,
+    check error, restart if required and etc.
+
+TaskListener:
+    Need a distinctive method for destroy task event.

@@ -1,0 +1,19 @@
+/**
+ * @namespace kisc
+ * Namespace kisc the main namespace for c++htc library.
+ */
+
+/**
+ * @namespace kisc::util
+ * Some utilities functions and classes reside in this namespace.
+ */
+
+/**
+ * @namespace kisc::crypto
+ * Cryptographic utilities functions and classes reside in this namespace.
+ */
+
+/**
+ * @namespace kisc::config
+ * Some special coniguration related classes reside in this namespace.
+ */
